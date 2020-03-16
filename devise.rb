@@ -18,6 +18,7 @@ gem 'redis'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'sassc-rails'
+gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
@@ -130,9 +131,10 @@ environment generators
 # AFTER BUNDLE
 ########################################
 after_bundle do
-  # Generators: db + pages controller, ***removed simple_form -PJF
+  # Generators: db + simple form + pages controller
   ########################################
   rails_command 'db:drop db:create db:migrate'
+  generate('simple_form:install', '--bootstrap')
   generate(:controller, 'pages', 'home', '--skip-routes', '--no-test-framework')
 
   # Routes
